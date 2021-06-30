@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',        
         'NAME': 'perfumesapiDB',
-        'USER': 'postgres',        
+        'USER': 'perfumesapiDB@perfumesapi',        
         'PASSWORD': '0502933Djrr',
-        'HOST': 'localhost',
+        'HOST': 'perfumesapi.postgres.database.azure.com',
     }
 }
 
