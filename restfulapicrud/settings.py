@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-013moi5bo3oqv0%(acuvk##ft_*$dy6y5l&o4wmmrcml$s*z7#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
+ALLOWED_HOSTS = [os.environ.get('WEBSITE_HOSTNAME', '*')]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,7 +124,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = os.environ.get("DJANGO_STATIC_URL", "/static/")
+STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT", "./static/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
